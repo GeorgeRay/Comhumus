@@ -1,0 +1,35 @@
+﻿@page "/AddNewPoll"
+@inject NavigationManager Navigation
+<h3>Create a new poll</h3>
+
+<EditForm Model="@newPoll" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label for="decision" class="form-label">The Decision to make</label>
+        <InputText id="decision" class="form-control" @bind-Value="newPoll.TheDecision" />
+    </div>
+
+    <div class="mb-3">
+        <label for="objective" class="form-label">The Objective of the decision</label>
+        <InputText id="objective" class="form-control" @bind-Value="newPoll.TheObjective" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Poll</button>
+</EditForm>
+
+@code {
+    private Poll newPoll = new Poll { TheDecision = "", CreatedAt = DateTime.Now };
+
+    private void HandleValidSubmit()
+    {
+    
+        // Handle the form submission, e.g., save the poll to a database
+        Console.WriteLine($"Poll Created: {newPoll.TheDecision}, {newPoll.TheObjective}");
+        // Navigate back to the Polls page
+        Navigation.NavigateTo("/Polls");
+    }
+
+ 
+}

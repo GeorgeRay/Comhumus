@@ -1,6 +1,16 @@
 ﻿@page "/Polls"
 <h3>Polls</h3>
+@* List polls *@
+<p>TODO add the list of polls here.</p>
+<button class="btn btn-primary" @onclick="NavigateToAddNewPoll">Add New Poll</button>
+
 
 @code {
+    [Inject]
+    public required NavigationManager Navigation { get; set; }
 
+    private void NavigateToAddNewPoll()
+    {
+        Navigation.NavigateTo("/AddNewPoll");
+    }
 }
